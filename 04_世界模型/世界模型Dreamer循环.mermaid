@@ -1,0 +1,10 @@
+flowchart TD
+    ENV["真实环境 Real Environment"] --> OBS["观测 Observation<br/>像素画面 / 传感器状态"]
+    OBS --> ENC["编码器 Encoder<br/>压缩为潜变量 latent state"]
+    ENC --> WM["世界模型 World Model<br/>预测下一潜状态与奖励<br/>Recurrent State Space Model"]
+    WM --> IMG["潜空间中想象/推演 Latent Imagination<br/>不与真实环境交互, 纯靠世界模型自己'脑内推演'"]
+    IMG --> POL["策略/价值网络更新<br/>基于想象出的大量轨迹做RL训练"]
+    POL --> ACT["输出动作 Action"]
+    ACT --> ENV
+    WM -.->|"真实观测与预测的误差回传, 持续修正世界模型"| ENC
+    NOTE["对比JEPA路线：<br/>JEPA不重建像素, 只在潜空间预测'缺失部分的表征'<br/>Dreamer则用世界模型直接做规划和RL训练"]

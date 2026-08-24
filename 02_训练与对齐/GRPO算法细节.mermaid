@@ -1,0 +1,14 @@
+flowchart TD
+    Q["输入问题 Prompt"] --> G1["用当前策略采样一组回答<br/>Group of N responses（如N=8~64）"]
+    G1 --> R1["回答 1"]
+    G1 --> R2["回答 2"]
+    G1 --> R3["回答 3"]
+    G1 --> RN["... 回答 N"]
+    R1 --> VF["验证器/规则打分<br/>正确=1, 错误=0（或程序化reward）"]
+    R2 --> VF
+    R3 --> VF
+    RN --> VF
+    VF --> NORM["组内归一化<br/>advantage_i = (reward_i − 组内均值) / 组内标准差"]
+    NORM --> UPD["策略梯度更新<br/>提升相对更优回答的生成概率<br/>无需单独训练value/critic网络"]
+    UPD --> Q
+    UPD --> NOTE["核心创新点：<br/>1) 用组内相对排名代替绝对价值估计<br/>2) 去掉critic, 大幅降低显存和训练复杂度<br/>3) 天然适配可验证奖励（数学/代码）场景"]

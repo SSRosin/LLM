@@ -1,0 +1,9 @@
+flowchart TD
+    TASK["任务 / 用户目标"] --> THINK["思考 Reasoning<br/>LLM生成下一步计划 Thought"]
+    THINK --> DECIDE{"是否需要用工具/查资料?"}
+    DECIDE -->|"是"| ACT["行动 Action<br/>调用工具 / API / 执行代码"]
+    ACT --> OBS["观察 Observation<br/>工具返回的结果"]
+    OBS --> MEM["记忆更新<br/>短期上下文 + 长期记忆库(向量库/摘要)"]
+    MEM --> THINK
+    DECIDE -->|"否, 信息已足够"| ANSWER["生成最终回答 / 完成任务"]
+    ANSWER --> REFLECT["可选: 自我反思 Reflexion<br/>失败时生成经验教训存入记忆, 下次重试"]

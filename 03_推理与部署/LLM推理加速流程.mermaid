@@ -1,0 +1,8 @@
+flowchart LR
+    IN["用户输入 Prompt"] --> PRE["Prefill阶段<br/>并行计算所有输入token的KV"]
+    PRE --> KV["KV Cache<br/>缓存每层注意力的Key/Value向量"]
+    KV --> DEC["Decode阶段<br/>逐token自回归生成（延迟主要来源）"]
+    DEC --> SD["投机解码 Speculative Decoding<br/>小模型先猜多个候选token, 大模型一次并行验证"]
+    SD --> PA["PagedAttention / vLLM<br/>KV Cache分页式管理, 提升显存利用率与批处理吞吐"]
+    PA --> TTC["测试时计算扩展 Test-Time Compute<br/>用更长思维链/多次采样换取更高准确率"]
+    TTC --> OUT["最终输出"]

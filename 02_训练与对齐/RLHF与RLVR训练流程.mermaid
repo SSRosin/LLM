@@ -1,0 +1,10 @@
+flowchart TD
+    P["预训练 Pretrained Base Model"] --> S["SFT 监督微调<br/>少量高质量指令数据"]
+    S --> C{"后训练路线选择"}
+    C -->|"经典 RLHF 路线"| RM["训练奖励模型 Reward Model<br/>人类偏好对比数据 A胜于B"]
+    RM --> PPO["PPO 策略优化<br/>LLM作为策略网络, RM打分作为奖励"]
+    C -->|"RLVR 可验证奖励路线<br/>DeepSeek-R1 / OpenAI o1 采用"| VER["规则/程序化验证器<br/>数学答案对错 / 代码能否跑通测试 / 格式是否正确"]
+    VER --> GRPO["GRPO 组相对策略优化<br/>省去critic网络, 组内互相比较打分"]
+    PPO --> ALIGNED["对齐后的模型 / 推理增强模型"]
+    GRPO --> ALIGNED
+    ALIGNED --> NOTE["注：RLVR不依赖主观人类打分<br/>因此更容易规模化, 是DeepSeek-R1类推理模型的核心思路"]
