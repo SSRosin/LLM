@@ -14,10 +14,16 @@
 
 | 知识点 | 从哪里遇到的 | 状态 | 优先级 |
 |---|---|---|---|
+| 信息熵 / 交叉熵 | Loss函数理解、3B1B Cross-Entropy视频 | ✅ 已通过视频+对话理解 | 高 |
+| Softmax 函数 | Attention权重归一化 | ✅ 已理解 | 高 |
+| 矩阵乘法与转置 | QK^T 计算、多头拼接 | ✅ 已通过Gemini对话深入 | 高 |
+| 低秩分解 | W_V降维/W_O升维 | ✅ 已通过Gemini对话理解 | 中 |
+| 反向传播 / 链式法则 | 3B1B Ch3-4、GPT对话 | ✅ 已理解核心直觉 | 高 |
+| 梯度下降 | 3B1B Ch2、GPT对话 | ✅ 已理解 | 高 |
+| 激活函数(Sigmoid/ReLU/GELU/SwiGLU) | GPT对话 | ✅ 已理解各自特点和选型 | 中 |
 | 策略梯度 Policy Gradient | 读InstructGPT/PPO时 | 待补 | 高 |
 | KL散度 | RLHF里的KL约束 | 待补 | 高 |
 | Importance Sampling | PPO的Clipping推导 | 待补 | 中 |
-| 信息熵 / 交叉熵 | Loss函数理解 | 待补 | 中 |
 | 贝叶斯定理 | 概率模型基础 | 待补 | 低 |
 | 矩阵分解（SVD） | LoRA的低秩分解 | 待补 | 中 |
 
